@@ -369,7 +369,8 @@
       #sc4:focus-visible ~ label[for="sc4"],
       #sc5:focus-visible ~ label[for="sc5"],
       #sc6:focus-visible ~ label[for="sc6"],
-      #sc7:focus-visible ~ label[for="sc7"] {
+      #sc7:focus-visible ~ label[for="sc7"],
+      #sc8:focus-visible ~ label[for="sc8"] {
         outline: 3px solid var(--caramel);
         outline-offset: 2px;
       }
@@ -379,7 +380,8 @@
       #sc4:checked ~ .panel[data-for="sc4"],
       #sc5:checked ~ .panel[data-for="sc5"],
       #sc6:checked ~ .panel[data-for="sc6"],
-      #sc7:checked ~ .panel[data-for="sc7"] {
+      #sc7:checked ~ .panel[data-for="sc7"],
+      #sc8:checked ~ .panel[data-for="sc8"] {
         display: block;
       }
 
@@ -676,6 +678,8 @@
               <label for="sc6">Waiting room</label>
               <input type="radio" name="sc" id="sc7" />
               <label for="sc7">On your phone</label>
+              <input type="radio" name="sc" id="sc8" />
+              <label for="sc8">Client list</label>
 
               <figure class="panel" data-for="sc1">
                 <img
@@ -757,7 +761,7 @@
               <figure class="panel" data-for="sc6">
                 <img
                   src="media/tv-display.webp"
-                  alt="Managing waiting-room displays: paired televisions each set to a slideshow or KPI dashboard"
+                  alt="A waiting-room television showing practice outcome rates beside national MANA reference figures"
                   loading="lazy"
                   width="1440"
                   height="900"
@@ -781,6 +785,22 @@
                   <strong>The same record, on your phone.</strong> A real native
                   app on iOS and Android &mdash; charting, documents and
                   messaging, not a shrunken web page.
+                </figcaption>
+              </figure>
+
+              <figure class="panel" data-for="sc8">
+                <img
+                  src="media/clients.webp"
+                  alt="Searching a several-hundred-client list; each row shows the obstetric summary and date of birth"
+                  loading="lazy"
+                  width="1440"
+                  height="900"
+                />
+                <figcaption>
+                  <strong>Built for a real caseload.</strong> Search hundreds of
+                  clients by name, with the obstetric summary on every row
+                  &mdash; and two people who share a name told apart by their
+                  date of birth.
                 </figcaption>
               </figure>
             </div>
