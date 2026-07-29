@@ -298,6 +298,54 @@
         padding: 0;
         box-shadow: 0 10px 30px rgba(18, 60, 71, 0.1);
       }
+      /* Phone captures are portrait; the 16/10 tile would crop them to a letterbox slot. Give them
+         their own ratio and let the frame follow the device instead of the grid. */
+      .shot.phone {
+        aspect-ratio: 3 / 4;
+        background: linear-gradient(160deg, #e6eef0, #efe6de);
+      }
+      /* MAX-dimensions, not height:100%. The tile is `display:grid; place-items:center`, which turns
+         OFF the default stretch — so a percentage height has no definite basis to resolve against and
+         silently falls back to the image's natural size. That rendered the 420x914 phone capture at
+         full size inside a 317x423 tile and cropped most of it away, while `object-fit` still
+         computed as `contain` and made the rule look like it had applied. min-height:0 keeps the
+         grid item from refusing to shrink below its content. */
+      .shot.phone img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        min-height: 0;
+        object-fit: contain;
+      }
+      /* The caption sits over the foot of the tile rather than below it, so adding captions did not
+         change the grid's row heights and the un-captioned stills still line up with the rest. */
+      .shot {
+        position: relative;
+      }
+      .shot figcaption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 22px 14px 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #fff;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+        background: linear-gradient(
+          to top,
+          rgba(12, 40, 48, 0.72),
+          rgba(12, 40, 48, 0)
+        );
+      }
+      @media (prefers-reduced-motion: reduce) {
+        /* Animated WebP cannot be paused from CSS, so this cannot stop them — say so rather than
+           pretend. Soften the tiles instead, and keep the caption legible. */
+        .shot img {
+          opacity: 0.96;
+        }
+      }
       .shot span {
         font-weight: 600;
         opacity: 0.8;
@@ -446,6 +494,59 @@
                 audit trail on every action.
               </p>
             </div>
+            <div class="card">
+              <div class="ico">📱</div>
+              <h3>Web, iPhone &amp; Android</h3>
+              <p>
+                The same record on every device — a full native app on iOS and
+                Android, not a shrunken web page. Charting, messaging and the
+                client list work the same wherever you open them.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">📺</div>
+              <h3>Waiting-room displays</h3>
+              <p>
+                Pair a TV in a few seconds with an on-screen code, then show
+                practice hours, your own slideshow, and outcome statistics —
+                with no client-identifying information on screen.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">📊</div>
+              <h3>Outcomes you can defend</h3>
+              <p>
+                Cesarean, transfer and spontaneous-birth rates computed from
+                your own charts and shown beside MANA reference figures, with
+                the caveats stated rather than buried.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">👩‍👧</div>
+              <h3>Client portal</h3>
+              <p>
+                Clients read their own visit summaries, sign forms and message
+                the practice. Share a single pregnancy with a partner or a
+                consulting provider through a scoped, expiring link.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">💬</div>
+              <h3>Telehealth &amp; messaging</h3>
+              <p>
+                Secure threads with your clients, urgent messages surfaced on
+                the dashboard, and video visits that start from the chart.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">🌎</div>
+              <h3>Spanish, in the clinical UI</h3>
+              <p>
+                Not a marketing page translation — the charting surfaces
+                themselves, so a Spanish-speaking client reads their own record
+                in their own language.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -486,6 +587,101 @@
                 width="1280"
                 height="880"
               />
+            </figure>
+            <!-- Animated WebP, all recorded from the real application against a synthetic demo
+                 practice — no mockups and no real client data. Every one is lazy-loaded and the
+                 whole set is ~1.3MB, so nothing below the fold costs a first-paint byte. -->
+            <figure class="shot">
+              <img
+                src="media/roster.webp"
+                alt="The client list: obstetric summaries, urgent messages and today's telehealth visits on one screen"
+                loading="lazy"
+                width="1440"
+                height="900"
+              />
+              <figcaption>Your day, on one screen</figcaption>
+            </figure>
+            <figure class="shot">
+              <img
+                src="media/charting.webp"
+                alt="Charting an active labor: stage-aware entry composer with append-only signed notes"
+                loading="lazy"
+                width="1440"
+                height="900"
+              />
+              <figcaption>
+                Stage-aware charting, signed and append-only
+              </figcaption>
+            </figure>
+            <figure class="shot">
+              <img
+                src="media/quality.webp"
+                alt="Quality dashboard: cesarean, transfer and spontaneous-birth rates beside MANA reference figures"
+                loading="lazy"
+                width="1440"
+                height="900"
+              />
+              <figcaption>Outcomes beside MANA reference rates</figcaption>
+            </figure>
+            <figure class="shot">
+              <img
+                src="media/governance.webp"
+                alt="Owner governance: the tamper-evident audit chain and the compliance registers"
+                loading="lazy"
+                width="1440"
+                height="900"
+              />
+              <figcaption>A hash-verified audit chain you can check</figcaption>
+            </figure>
+            <figure class="shot">
+              <img
+                src="media/portal.webp"
+                alt="The client's own view: visit timeline, messages and birth plan through a scoped share link"
+                loading="lazy"
+                width="1440"
+                height="900"
+              />
+              <figcaption>What your client sees</figcaption>
+            </figure>
+            <figure class="shot">
+              <img
+                src="media/tv-display.webp"
+                alt="Managing waiting-room displays: paired televisions, each set to a slideshow or a KPI dashboard, with live updates toggled per screen"
+                loading="lazy"
+                width="1440"
+                height="900"
+              />
+              <figcaption>Pair and manage waiting-room screens</figcaption>
+            </figure>
+            <figure class="shot">
+              <img
+                src="media/spanish.webp"
+                alt="The clinical charting interface rendered in Spanish"
+                loading="lazy"
+                width="1440"
+                height="900"
+              />
+              <figcaption>Spanish, in the clinical UI itself</figcaption>
+            </figure>
+            <figure class="shot phone">
+              <img
+                src="media/ios-chart.webp"
+                alt="The same chart on iPhone: documents, billing and the client profile"
+                loading="lazy"
+                width="420"
+                height="912"
+              />
+              <figcaption>The same record on your phone</figcaption>
+            </figure>
+            <figure class="shot phone">
+              <img
+                src="media/ios-messaging.webp"
+                alt="Secure client messaging on iPhone"
+                loading="lazy"
+                width="420"
+                height="912"
+              />
+              <figcaption>Messaging, wherever you are</figcaption>
             </figure>
           </div>
         </div>
