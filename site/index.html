@@ -370,7 +370,8 @@
       #sc5:focus-visible ~ label[for="sc5"],
       #sc6:focus-visible ~ label[for="sc6"],
       #sc7:focus-visible ~ label[for="sc7"],
-      #sc8:focus-visible ~ label[for="sc8"] {
+      #sc8:focus-visible ~ label[for="sc8"],
+      #sc9:focus-visible ~ label[for="sc9"] {
         outline: 3px solid var(--caramel);
         outline-offset: 2px;
       }
@@ -381,7 +382,8 @@
       #sc5:checked ~ .panel[data-for="sc5"],
       #sc6:checked ~ .panel[data-for="sc6"],
       #sc7:checked ~ .panel[data-for="sc7"],
-      #sc8:checked ~ .panel[data-for="sc8"] {
+      #sc8:checked ~ .panel[data-for="sc8"],
+      #sc9:checked ~ .panel[data-for="sc9"] {
         display: block;
       }
 
@@ -680,6 +682,8 @@
               <label for="sc7">On your phone</label>
               <input type="radio" name="sc" id="sc8" />
               <label for="sc8">Client list</label>
+              <input type="radio" name="sc" id="sc9" />
+              <label for="sc9">On Android</label>
 
               <figure class="panel" data-for="sc1">
                 <img
@@ -785,6 +789,21 @@
                   <strong>The same record, on your phone.</strong> A real native
                   app on iOS and Android &mdash; charting, documents and
                   messaging, not a shrunken web page.
+                </figcaption>
+              </figure>
+
+              <figure class="panel phone" data-for="sc9">
+                <img
+                  src="media/android-phone.webp"
+                  alt="Signing in on an Android phone and searching the client list, running natively"
+                  loading="lazy"
+                  width="400"
+                  height="889"
+                />
+                <figcaption>
+                  <strong>Android too, not an afterthought.</strong> The same
+                  native app on a real Pixel &mdash; sign-in, multi-factor, and
+                  the full client list.
                 </figcaption>
               </figure>
 
