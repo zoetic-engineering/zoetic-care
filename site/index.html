@@ -318,11 +318,17 @@
       }
       .panel {
         display: none;
+        /* flex-basis, not just width: the panel is a flex item on the same wrapping row as the
+           tab labels, and `width:100%` alone still allows it to shrink. An <img> resisted that
+           through its intrinsic size; a <video> has no intrinsic contribution and collapsed to
+           ~2px — a blank showcase that looks like a broken asset rather than a layout rule. */
+        flex: 0 0 100%;
         width: 100%;
         margin: 22px 0 0;
         text-align: center;
       }
-      .panel img {
+      .panel img,
+      .panel video {
         width: 100%;
         height: auto;
         border-radius: var(--radius);
@@ -330,12 +336,12 @@
         box-shadow: 0 14px 44px rgba(18, 60, 71, 0.16);
         display: block;
       }
-      /* Portrait phone footage must NOT stretch to the stage width — cap it and centre it. */
-      .panel.phone img {
-        width: auto;
-        max-width: min(320px, 100%);
-        max-height: 70vh;
-        margin: 0 auto;
+      /* The panels are silent, looping demos, so they autoplay. Anyone who has asked the OS for
+         less motion gets the poster frame and nothing moving. */
+      @media (prefers-reduced-motion: reduce) {
+        .panel video {
+          animation: none;
+        }
       }
       .panel figcaption {
         max-width: 660px;
@@ -369,9 +375,7 @@
       #sc4:focus-visible ~ label[for="sc4"],
       #sc5:focus-visible ~ label[for="sc5"],
       #sc6:focus-visible ~ label[for="sc6"],
-      #sc7:focus-visible ~ label[for="sc7"],
-      #sc8:focus-visible ~ label[for="sc8"],
-      #sc9:focus-visible ~ label[for="sc9"] {
+      #sc7:focus-visible ~ label[for="sc7"] {
         outline: 3px solid var(--caramel);
         outline-offset: 2px;
       }
@@ -381,9 +385,7 @@
       #sc4:checked ~ .panel[data-for="sc4"],
       #sc5:checked ~ .panel[data-for="sc5"],
       #sc6:checked ~ .panel[data-for="sc6"],
-      #sc7:checked ~ .panel[data-for="sc7"],
-      #sc8:checked ~ .panel[data-for="sc8"],
-      #sc9:checked ~ .panel[data-for="sc9"] {
+      #sc7:checked ~ .panel[data-for="sc7"] {
         display: block;
       }
 
@@ -682,13 +684,17 @@
               <label for="sc7">In your pocket</label>
 
               <figure class="panel" data-for="sc1">
-                <img
-                  src="media/roster.webp"
-                  alt="The client list with obstetric summaries, urgent messages and today's telehealth visits"
-                  loading="lazy"
+                <video
+                  data-src="media/roster.mp4"
+                  poster="media/roster.jpg"
                   width="960"
                   height="540"
-                />
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label="The client list with obstetric summaries, urgent messages and today's telehealth visits"
+                ></video>
                 <figcaption>
                   <strong>Your day, on one screen.</strong> What needs
                   acknowledging, today&rsquo;s visits, and a caseload of several
@@ -699,13 +705,17 @@
               </figure>
 
               <figure class="panel" data-for="sc2">
-                <img
-                  src="media/charting.webp"
-                  alt="Charting an active labor with the stage-aware entry composer"
-                  loading="lazy"
+                <video
+                  data-src="media/charting.mp4"
+                  poster="media/charting.jpg"
                   width="960"
                   height="540"
-                />
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label="Charting an active labor with the stage-aware entry composer"
+                ></video>
                 <figcaption>
                   <strong>Stage-aware charting.</strong> Prenatal, labor and
                   postpartum each get their own flow. Notes are signed and
@@ -715,13 +725,17 @@
               </figure>
 
               <figure class="panel" data-for="sc3">
-                <img
-                  src="media/quality.webp"
-                  alt="Quality dashboard showing outcome rates beside MANA reference figures"
-                  loading="lazy"
+                <video
+                  data-src="media/quality.mp4"
+                  poster="media/quality.jpg"
                   width="960"
                   height="540"
-                />
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label="Quality dashboard showing outcome rates beside MANA reference figures"
+                ></video>
                 <figcaption>
                   <strong>Outcomes you can defend.</strong> Your own rates
                   beside MANA reference figures &mdash; and where the sample is
@@ -730,13 +744,17 @@
               </figure>
 
               <figure class="panel" data-for="sc4">
-                <img
-                  src="media/governance.webp"
-                  alt="Owner governance view with the tamper-evident audit chain and compliance registers"
-                  loading="lazy"
+                <video
+                  data-src="media/governance.mp4"
+                  poster="media/governance.jpg"
                   width="960"
                   height="540"
-                />
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label="Owner governance view with the tamper-evident audit chain and compliance registers"
+                ></video>
                 <figcaption>
                   <strong>A hash-verified audit chain.</strong> Every action is
                   linked to the one before it, so tampering breaks the chain
@@ -745,13 +763,17 @@
               </figure>
 
               <figure class="panel" data-for="sc5">
-                <img
-                  src="media/portal.webp"
-                  alt="The client's own portal view: visit timeline, messages and birth plan"
-                  loading="lazy"
+                <video
+                  data-src="media/portal.mp4"
+                  poster="media/portal.jpg"
                   width="960"
                   height="540"
-                />
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label="The client's own portal view: visit timeline, messages and birth plan"
+                ></video>
                 <figcaption>
                   <strong>What your client sees.</strong> Their visits, their
                   birth plan, their messages &mdash; and a scoped, expiring link
@@ -761,13 +783,17 @@
               </figure>
 
               <figure class="panel" data-for="sc6">
-                <img
-                  src="media/tv-display.webp"
-                  alt="A waiting-room television showing practice outcome rates beside national MANA reference figures"
-                  loading="lazy"
+                <video
+                  data-src="media/tv-display.mp4"
+                  poster="media/tv-display.jpg"
                   width="960"
                   height="540"
-                />
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label="A waiting-room television showing practice outcome rates beside national MANA reference figures"
+                ></video>
                 <figcaption>
                   <strong>Waiting-room screens.</strong> Pair a television with
                   an on-screen code, then choose what it shows. No
@@ -776,13 +802,17 @@
               </figure>
 
               <figure class="panel" data-for="sc7">
-                <img
-                  src="media/in-your-pocket.webp"
-                  alt="The same client search running side by side on iPhone and on an Android Pixel, each narrowing a several-hundred-client list as the name is typed"
-                  loading="lazy"
+                <video
+                  data-src="media/in-your-pocket.mp4"
+                  poster="media/in-your-pocket.jpg"
                   width="960"
                   height="570"
-                />
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label="The same client search running side by side on iPhone and on an Android Pixel, each narrowing a several-hundred-client list as the name is typed"
+                ></video>
                 <figcaption>
                   <strong>The same practice, in your pocket.</strong> iOS and
                   Android are both real native apps, not a shrunken web page
@@ -824,5 +854,42 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      // The showcase is CSS-only tabs; this exists so the panels behave like demos without making a
+      // first visit pay for all seven. Each <video> ships with a poster and NO src, so only the
+      // SELECTED panel ever fetches its file — switching tabs attaches that one, once. `autoplay`
+      // cannot do this: it overrides preload="none" and pulls every panel, measured at 3.2 MB on
+      // arrival versus ~334 KB here.
+      (function () {
+        var vids = [].slice.call(
+          document.querySelectorAll(".showcase .panel video"),
+        );
+        var still = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        function sync() {
+          vids.forEach(function (v) {
+            var shown = getComputedStyle(v.parentNode).display !== "none";
+            if (!shown) {
+              v.pause();
+              return;
+            }
+            if (!v.getAttribute("src"))
+              v.setAttribute("src", v.getAttribute("data-src"));
+            if (still) return; // reduced motion: attach the frame, never animate it
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {}); // refused → the poster stays, silently
+          });
+        }
+        [].forEach.call(
+          document.querySelectorAll('.showcase input[name="sc"]'),
+          function (r) {
+            r.addEventListener("change", sync);
+          },
+        );
+        sync();
+      })();
+    </script>
   </body>
 </html>
