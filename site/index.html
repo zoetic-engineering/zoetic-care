@@ -35,7 +35,6 @@
         --ink-muted: #5c6f75;
         --white: #ffffff;
         --radius: 16px;
-        --shadow: 0 12px 40px rgba(18, 60, 71, 0.12);
       }
       * {
         box-sizing: border-box;
@@ -87,7 +86,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        font-weight: 700;
+        font-weight: 600;
         color: var(--deep-ink);
         text-decoration: none;
         font-size: 18px;
@@ -96,7 +95,7 @@
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        background: linear-gradient(150deg, var(--deep), var(--blue));
+        background: var(--deep);
         color: var(--blush);
         display: grid;
         place-items: center;
@@ -115,18 +114,7 @@
 
       /* ---- hero ---- */
       .hero {
-        background:
-          radial-gradient(
-            900px 420px at 82% -12%,
-            rgba(30, 90, 107, 0.3),
-            transparent 62%
-          ),
-          radial-gradient(
-            700px 380px at 8% 8%,
-            rgba(216, 158, 127, 0.3),
-            transparent 60%
-          ),
-          linear-gradient(158deg, #d3e9ee 0%, #f0ddd6 52%, #f7e9dd 100%);
+        background: var(--sand-alt);
         padding: 84px 0 64px;
         border-bottom: 1px solid #e6d9cf;
       }
@@ -143,10 +131,8 @@
         margin: 0 0 28px;
       }
       .eyebrow {
-        text-transform: uppercase;
-        letter-spacing: 2px;
         font-size: 13px;
-        font-weight: 700;
+        font-weight: 600;
         color: var(--blue);
         margin: 0 0 14px;
       }
@@ -169,7 +155,6 @@
       .btn-primary {
         background: var(--deep);
         color: var(--white);
-        box-shadow: var(--shadow);
       }
       .btn-primary:hover {
         transform: translateY(-1px);
@@ -195,7 +180,7 @@
         padding: 66px 0;
       }
       section.alt {
-        background: linear-gradient(180deg, #f6e7df 0%, #e6f0f2 100%);
+        background: var(--sand-alt);
         border-top: 1px solid #eaddd3;
         border-bottom: 1px solid #d9e6e8;
       }
@@ -220,38 +205,11 @@
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
       }
-      /* Each card leans into a different palette color so the grid feels like the whole palette. */
       .card {
         background: var(--white);
         border: 1px solid #e7e0d6;
         border-radius: var(--radius);
         padding: 26px;
-        box-shadow: 0 8px 24px rgba(18, 60, 71, 0.06);
-        border-top: 3px solid var(--blue);
-      }
-      .card:nth-child(6n + 1) {
-        border-top-color: var(--deep);
-        background: #f3fafb;
-      }
-      .card:nth-child(6n + 2) {
-        border-top-color: var(--caramel);
-        background: #fbf5ee;
-      }
-      .card:nth-child(6n + 3) {
-        border-top-color: var(--peach);
-        background: #fdf3ec;
-      }
-      .card:nth-child(6n + 4) {
-        border-top-color: var(--blue);
-        background: #f1f8fb;
-      }
-      .card:nth-child(6n + 5) {
-        border-top-color: #c98b86;
-        background: #fbf1ef;
-      }
-      .card:nth-child(6n + 6) {
-        border-top-color: var(--deep);
-        background: #f3fafb;
       }
       .card .ico {
         width: 44px;
@@ -261,11 +219,6 @@
         place-items: center;
         font-size: 22px;
         margin-bottom: 14px;
-        background: rgba(30, 90, 107, 0.1);
-      }
-      .card:nth-child(6n + 2) .ico,
-      .card:nth-child(6n + 3) .ico {
-        background: rgba(188, 124, 70, 0.14);
       }
       .card h3 {
         margin: 0 0 8px;
@@ -333,7 +286,6 @@
         height: auto;
         border-radius: var(--radius);
         border: 1px solid #dfe7e9;
-        box-shadow: 0 14px 44px rgba(18, 60, 71, 0.16);
         display: block;
       }
       /* The panels are silent, looping demos, so they autoplay. Anyone who has asked the OS for
@@ -398,7 +350,7 @@
         border-radius: var(--radius);
         overflow: hidden;
         border: 1px solid #dfe7e9;
-        background: linear-gradient(160deg, #dcebef, #f3e7df);
+        background: var(--sand-alt);
         aspect-ratio: 16 / 10;
         display: grid;
         place-items: center;
@@ -406,13 +358,12 @@
         text-align: center;
         margin: 0;
         padding: 0;
-        box-shadow: 0 10px 30px rgba(18, 60, 71, 0.1);
       }
       /* Phone captures are portrait; the 16/10 tile would crop them to a letterbox slot. Give them
          their own ratio and let the frame follow the device instead of the grid. */
       .shot.phone {
         aspect-ratio: 3 / 4;
-        background: linear-gradient(160deg, #e6eef0, #efe6de);
+        background: var(--sand-alt);
       }
       /* MAX-dimensions, not height:100%. The tile is `display:grid; place-items:center`, which turns
          OFF the default stretch — so a percentage height has no definite basis to resolve against and
@@ -471,12 +422,11 @@
 
       /* ---- contact ---- */
       .contact-card {
-        background: linear-gradient(160deg, var(--deep), var(--blue));
+        background: var(--deep);
         color: var(--white);
         border-radius: 22px;
         padding: 46px;
         text-align: center;
-        box-shadow: var(--shadow);
       }
       .contact-card h2 {
         color: var(--white);
@@ -540,8 +490,8 @@
             <a class="btn btn-ghost" href="#features">How it works</a>
           </div>
           <p class="platforms">
-            📱 iOS &amp; Android &nbsp;·&nbsp; 💻 Web &nbsp;·&nbsp; 🔒
-            Offline-first &nbsp;·&nbsp; FHIR-native
+            iOS &amp; Android &nbsp;·&nbsp; Web &nbsp;·&nbsp; Offline-first
+            &nbsp;·&nbsp; FHIR-native
           </p>
         </div>
       </section>
